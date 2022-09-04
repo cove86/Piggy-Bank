@@ -24,7 +24,7 @@
   </head>
   <body>
     <nav class="bg-light border navbar navbar-expand-md navbar-light">
-      <div class="container-fluid">
+      <div class="container">
         <a class="navbar-brand" href="/"
           ><img src="{{ url_for('static', filename='logo.png') }}"
         /></a>
@@ -54,23 +54,34 @@
             </li>
           </ul>
           <ul class="navbar-nav ms-auto mt-2">
+            {% if g.user %}
             <li class="nav-item">
               <a class="nav-link" href="/account">My Account</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/logout">Log Out</a>
+              <a class="nav-link" href="{{ url_for('auth.logout') }}"
+                >Log Out</a
+              >
             </li>
-          </ul>
-          <ul class="navbar-nav ms-auto mt-2">
+            {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="/register">Register</a>
+              <a class="nav-link" href="{{ url_for('auth.register') }}"
+                >Register</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/login">Log In</a>
+              <a class="nav-link" href="{{ url_for('auth.login') }}">Log In</a>
             </li>
+            {% endif %}
           </ul>
         </div>
       </div>
     </nav>
+    <section class="container">
+      <header>{% block header %}{% endblock %}</header>
+      {% for message in get_flashed_messages() %}
+      <div class="flash">{{ message }}</div>
+      {% endfor %} {% block content %}{% endblock %}
+    </section>
   </body>
 </html>
