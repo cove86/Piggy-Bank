@@ -27,7 +27,103 @@
   </tbody>
 </table>
 <div class="mb-3 d-flex justify-content-evenly">
-  <a class="btn btn-primary">Deposit</a>
-  <a class="btn btn-primary">Withdraw</a>
+  <!-- <a class="btn btn-primary">Deposit</a>
+  <a class="btn btn-primary">Withdraw</a> -->
+  <!-- Button trigger modal -->
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#depositModal"
+  >
+    Deposit
+  </button>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="depositModal"
+    tabindex="-1"
+    aria-labelledby="depositModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="depositModalLabel">Deposit</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form method="post">
+            <div class="row row-cols-3">
+              <div class="mb-3">
+                <label for="50" class="form-label">£50</label>
+                <input type="number" class="form-control" name="50" />
+              </div>
+              <div class="mb-3">
+                <label for="20" class="form-label">£20</label>
+                <input type="number" class="form-control" name="20" />
+              </div>
+              <div class="mb-3">
+                <label for="10" class="form-label">£10</label>
+                <input type="number" class="form-control" name="10" />
+              </div>
+              <div class="mb-3">
+                <label for="5" class="form-label">£5</label>
+                <input type="number" class="form-control" name="5" />
+              </div>
+              <div class="mb-3">
+                <label for="2" class="form-label">£2</label>
+                <input type="number" class="form-control" name="2" />
+              </div>
+              <div class="mb-3">
+                <label for="1" class="form-label">£1</label>
+                <input type="number" class="form-control" name="1" />
+              </div>
+              <div class="mb-3">
+                <label for="50p" class="form-label">50p</label>
+                <input type="number" class="form-control" name="50p" />
+              </div>
+              <div class="mb-3">
+                <label for="20p" class="form-label">20p</label>
+                <input type="number" class="form-control" name="20p" />
+              </div>
+              <div class="mb-3">
+                <label for="10p" class="form-label">10p</label>
+                <input type="number" class="form-control" name="10p" />
+              </div>
+              <div class="mb-3">
+                <label for="5p" class="form-label">5p</label>
+                <input type="number" class="form-control" name="5p" />
+              </div>
+              <div class="mb-3">
+                <label for="2p" class="form-label">2p</label>
+                <input type="number" class="form-control" name="2p" />
+              </div>
+              <div class="mb-3">
+                <label for="1p" class="form-label">1p</label>
+                <input type="number" class="form-control" name="1p" />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary">Deposit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
