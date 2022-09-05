@@ -23,9 +23,13 @@ def balance():
   ).fetchone()
 
   if request.method == "POST":
-    print(request.form)
-    fifty = return_val(request.form.get('50'))
-    print(fifty)
+    db.execute(
+      'UPDATE bank SET Fifty = ?, Twenty = ?, Ten = ?, Five = ?, Two = ?, One = ?, Fifty_Pence = ?, Twenty_Pence = ?, Ten_Pence = ?, Five_Pence = ?, Two_Pence = ?, One_Pence = ? '
+      'WHERE user_id = ?', (return_val(request.form['Fifty']), return_val(request.form['Twenty']), return_val(request.form['Ten']), return_val(request.form['Five']),
+      return_val(request.form['Two']),return_val(request.form['One']), return_val(request.form['Fifty_Pence']), return_val(request.form['Twenty_Pence']),
+      return_val(request.form['Ten_Pence']), return_val(request.form['Five_Pence']),return_val(request.form['Two_Pence']), return_val(request.form['One_Pence']), str(g.user['id']))
+    )
+    db.commit()
 
   return render_template('bank/balance.html', data=data)
 
