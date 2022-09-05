@@ -23,15 +23,16 @@ def balance():
   ).fetchone()
 
   if request.method == "POST":
-    balance_input = request.form
-    # TODO Below needs to add to existing values in each column not just set to new values. Refactor return_val?
-    db.execute(
-      'UPDATE bank SET Fifty = Fifty + ?, Twenty = Twenty + ?, Ten = Ten + ?, Five = Five + ?, Two = Two + ?, One = One + ?, Fifty_Pence = Fifty_Pence + ?, Twenty_Pence = Twenty_Pence + ?, Ten_Pence = Ten_Pence + ?, Five_Pence = Five_Pence + ?, Two_Pence = Two_Pence + ?, One_Pence = One_Pence + ? '
-      'WHERE user_id = ?', (return_val(balance_input['Fifty']), return_val(balance_input['Twenty']), return_val(balance_input['Ten']), return_val(balance_input['Five']),
-      return_val(balance_input['Two']),return_val(balance_input['One']), return_val(balance_input['Fifty_Pence']), return_val(balance_input['Twenty_Pence']),
-      return_val(balance_input['Ten_Pence']), return_val(balance_input['Five_Pence']),return_val(balance_input['Two_Pence']), return_val(balance_input['One_Pence']), str(g.user['id']))
-    )
-    db.commit()
+    
+    if request.form['form-button'] == 'deposit':
+      balance_input = request.form
+      db.execute(
+        'UPDATE bank SET Fifty = Fifty + ?, Twenty = Twenty + ?, Ten = Ten + ?, Five = Five + ?, Two = Two + ?, One = One + ?, Fifty_Pence = Fifty_Pence + ?, Twenty_Pence = Twenty_Pence + ?, Ten_Pence = Ten_Pence + ?, Five_Pence = Five_Pence + ?, Two_Pence = Two_Pence + ?, One_Pence = One_Pence + ? '
+        'WHERE user_id = ?', (return_val(balance_input['Fifty']), return_val(balance_input['Twenty']), return_val(balance_input['Ten']), return_val(balance_input['Five']),
+        return_val(balance_input['Two']),return_val(balance_input['One']), return_val(balance_input['Fifty_Pence']), return_val(balance_input['Twenty_Pence']),
+        return_val(balance_input['Ten_Pence']), return_val(balance_input['Five_Pence']),return_val(balance_input['Two_Pence']), return_val(balance_input['One_Pence']), str(g.user['id']))
+      )
+      db.commit()
     return redirect('/balance')
 
   return render_template('bank/balance.html', data=data)
