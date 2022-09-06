@@ -5,7 +5,7 @@ from werkzeug.exceptions import abort
 
 from pbank.auth import login_required
 from pbank.db import get_db
-from pbank.helpers import deposit
+from pbank.helpers import deposit, withdraw, enough_to_withdraw
 
 bp = Blueprint('bank', __name__)
 
@@ -26,21 +26,16 @@ def balance():
     balance_input = request.form
     if balance_input['form-button'] == 'deposit':
       deposit(balance_input, str(g.user['id']))
-      # db.execute(
-      #   'UPDATE bank SET Fifty = Fifty + ?, Twenty = Twenty + ?, Ten = Ten + ?, Five = Five + ?, Two = Two + ?, One = One + ?, Fifty_Pence = Fifty_Pence + ?, Twenty_Pence = Twenty_Pence + ?, Ten_Pence = Ten_Pence + ?, Five_Pence = Five_Pence + ?, Two_Pence = Two_Pence + ?, One_Pence = One_Pence + ? '
-      #   'WHERE user_id = ?', (return_val(balance_input['Fifty']), return_val(balance_input['Twenty']), return_val(balance_input['Ten']), return_val(balance_input['Five']),
-      #   return_val(balance_input['Two']),return_val(balance_input['One']), return_val(balance_input['Fifty_Pence']), return_val(balance_input['Twenty_Pence']),
-      #   return_val(balance_input['Ten_Pence']), return_val(balance_input['Five_Pence']),return_val(balance_input['Two_Pence']), return_val(balance_input['One_Pence']), str(g.user['id']))
-      # )
-      # db.commit()
+      flash('Deposit Successful')
+      
+
     elif balance_input['form-button'] == 'withdraw':
-      db.execute(
-        'UPDATE bank SET Fifty = Fifty - ?, Twenty = Twenty - ?, Ten = Ten - ?, Five = Five - ?, Two = Two - ?, One = One - ?, Fifty_Pence = Fifty_Pence - ?, Twenty_Pence = Twenty_Pence - ?, Ten_Pence = Ten_Pence - ?, Five_Pence = Five_Pence - ?, Two_Pence = Two_Pence - ?, One_Pence = One_Pence - ? '
-        'WHERE user_id = ?', (return_val(balance_input['Fifty']), return_val(balance_input['Twenty']), return_val(balance_input['Ten']), return_val(balance_input['Five']),
-        return_val(balance_input['Two']),return_val(balance_input['One']), return_val(balance_input['Fifty_Pence']), return_val(balance_input['Twenty_Pence']),
-        return_val(balance_input['Ten_Pence']), return_val(balance_input['Five_Pence']),return_val(balance_input['Two_Pence']), return_val(balance_input['One_Pence']), str(g.user['id']))
-      )
-      db.commit()
+      withdrawn = enough_to_withdraw(balance, balance_input)
+      if withdrawn == -1:
+        flash('Not Enough Cash')
+      else:
+        withdraw(withdrawn, str(g.user['id']))
+        flash('Withdrawal Successful')
     return redirect('/balance')
 
   return render_template('bank/balance.html', balance=balance)
