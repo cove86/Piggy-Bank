@@ -26,8 +26,7 @@ def balance():
     balance_input = request.form
     if balance_input['form-button'] == 'deposit':
       deposit(balance_input, str(g.user['id']))
-      flash('Deposit Successful')
-      
+      flash('Deposit Successful')      
 
     elif balance_input['form-button'] == 'withdraw':
       withdrawn = enough_to_withdraw(balance, balance_input)
@@ -39,4 +38,16 @@ def balance():
     return redirect('/balance')
 
   return render_template('bank/balance.html', balance=balance)
+
+
+@bp.route('/transactions')
+@login_required
+def transactions():
+  return render_template('bank/transactions.html')
+
+
+@bp.route('/myaccount')
+@login_required
+def myaccount():
+  return render_template('bank/myaccount.html')
 

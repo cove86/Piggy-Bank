@@ -52,13 +52,17 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/sell">Transactions</a>
+              <a class="nav-link" href="{{ url_for('bank.transactions') }}"
+                >Transactions</a
+              >
             </li>
           </ul>
           <ul class="navbar-nav ms-auto mt-2">
             {% if g.user %}
             <li class="nav-item">
-              <a class="nav-link" href="/account">My Account</a>
+              <a class="nav-link" href="{{ url_for('bank.myaccount') }}"
+                >My Account</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('auth.logout') }}"
