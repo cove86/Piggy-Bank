@@ -25,6 +25,14 @@ CREATE TABLE bank (
   FOREIGN KEY (user_id) REFERENCES user (id)
 );
 
+CREATE TABLE "transaction_history" (
+	tran_type	TEXT NOT NULL,
+	amounts	TEXT NOT NULL,
+	date	TEXT NOT NULL,
+	user_id	INTEGER,
+	FOREIGN KEY (user_id) REFERENCES user (id)
+);
+
 CREATE TRIGGER trg_bank
 AFTER INSERT ON user
 BEGIN

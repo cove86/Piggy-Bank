@@ -5,7 +5,7 @@ from werkzeug.exceptions import abort
 
 from pbank.auth import login_required
 from pbank.db import get_db
-from pbank.helpers import deposit, withdraw, enough_to_withdraw
+from pbank.helpers import deposit, withdraw, enough_to_withdraw, tran_history
 
 bp = Blueprint('bank', __name__)
 
@@ -26,6 +26,7 @@ def balance():
     balance_input = request.form
     if balance_input['form-button'] == 'deposit':
       deposit(balance_input, str(g.user['id']))
+      tran_history(balance_input, 'deposit', str(g.user['id']))
       flash('Deposit Successful')      
 
     elif balance_input['form-button'] == 'withdraw':
@@ -34,6 +35,7 @@ def balance():
         flash('Not Enough Cash')
       else:
         withdraw(withdrawn, str(g.user['id']))
+        tran_history(balance_input, 'withdraw', str(g.user['id']))
         flash('Withdrawal Successful')
     return redirect('/balance')
 
@@ -43,7 +45,14 @@ def balance():
 @bp.route('/transactions')
 @login_required
 def transactions():
-  return render_template('bank/transactions.html')
+  db = get_db()
+  transactions = db.execute(
+    'SELECT tran_type, amounts, date FROM transaction_history WHERE user_id = ?', str(g.user['id'])
+  ).fetchall()
+
+  for tran in transactions:
+    print(tran[1])
+  return render_template('bank/transactions.html', transactions=transactions)
 
 
 @bp.route('/myaccount')

@@ -1,3 +1,22 @@
 {% extends 'base.html' %} {%block header %}
 <h1>{% block title %}Transactions{%endblock %} {% endblock %}</h1>
-{% block content %} {% endblock %}
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Type</th>
+      <th scope="col">Amounts</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for tran in transactions %}
+    <tr>
+      <td>{{ tran[0] }}</td>
+      <td>{{ tran[1] }}</td>
+      <td>{{ tran[2] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
