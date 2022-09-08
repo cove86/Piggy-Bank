@@ -5,7 +5,7 @@ from werkzeug.exceptions import abort
 
 from pbank.auth import login_required
 from pbank.db import get_db
-from pbank.helpers import deposit, withdraw, enough_to_withdraw, tran_history
+from pbank.helpers import deposit, withdraw, enough_to_withdraw, tran_history, total
 
 bp = Blueprint('bank', __name__)
 
@@ -21,6 +21,8 @@ def balance():
     'SELECT Fifty, Twenty, Ten, Five, Two, One, Fifty_Pence, Twenty_Pence, Ten_Pence, Five_Pence, Two_Pence, One_Pence'
     ' FROM bank WHERE user_id = ?', str(g.user['id'])
   ).fetchone()
+  balance_total = total(balance)
+  print(balance_total)
 
   if request.method == "POST":
     balance_input = request.form
@@ -39,7 +41,7 @@ def balance():
         flash('Withdrawal Successful')
     return redirect('/balance')
 
-  return render_template('bank/balance.html', balance=balance)
+  return render_template('bank/balance.html', balance=balance, balance_total=balance_total)
 
 
 @bp.route('/transactions')

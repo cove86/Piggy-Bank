@@ -51,3 +51,30 @@ def tran_history(new_balance, type, user):
     'INSERT INTO transaction_history VALUES (?, ?, ?, ?)', (type, history, date, user)
   )
   db.commit()
+
+
+def total(balance):
+  fifty = 50 * balance['Fifty']
+  twenty = 20 * balance['Twenty']
+  ten = 10 * balance['Ten']
+  five = 5 * balance['Five']
+  two = 2 * balance['Two']
+  one = 1 * balance['One']
+  fifty_p = .50 * balance['Fifty_Pence']
+  twenty_p = .20 * balance['Twenty_Pence']
+  ten_p = .10 * balance['Ten_Pence']
+  five_p = 0.05 * balance['Five_Pence']
+  two_p = 0.02 * balance['Two_Pence']
+  one_p = 0.01 * balance['One_Pence']
+
+  total = 0
+
+  total_list = [fifty, twenty, ten, five, two, one, fifty_p, twenty_p, ten_p, five_p, two_p, one_p]
+
+  for i in range(len(total_list)):
+    total += total_list[i]
+  
+  return '{:.2f}'.format(total)
+
+      
+

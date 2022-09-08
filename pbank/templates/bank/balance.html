@@ -16,6 +16,7 @@
       <th scope="col">5p</th>
       <th scope="col">2p</th>
       <th scope="col">1p</th>
+      <th scope="col">Total</th>
     </tr>
   </thead>
   <tbody>
@@ -23,6 +24,7 @@
       {% for val in balance %}
       <td>{{ val }}</td>
       {% endfor %}
+      <td>£{{ balance_total }}</td>
     </tr>
   </tbody>
 </table>
