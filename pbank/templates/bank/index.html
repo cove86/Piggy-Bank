@@ -1,3 +1,23 @@
-{% extends 'base.html' %} {%block header %}
-<h1>{% block title %}Home{%endblock %} {% endblock %}</h1>
-{% block content %} {% endblock %}
+{% extends 'base.html' %} {% block content %}
+<div class="px-4 py-5 my-5 text-center">
+  <!-- <img
+    class="d-block mx-auto mb-4"
+    src="../assets/brand/bootstrap-logo.svg"
+    alt=""
+    width="72"
+    height="57"
+  /> -->
+  <h1 class="display-5 fw-bold">Welcome to P-Bank</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">
+      We are P-Bank. A savings bank to keep track of your spare change pot. See
+      your balance, transactions and upload any deposits/withdrawls with a few
+      easy clicks!
+    </p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+      <a class="btn btn-primary btn-lg px-4 gap-3"> Register </a>
+      <a class="btn btn-outline-secondary btn-lg px-4"> Log in </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
