@@ -15,6 +15,21 @@
         See your balance, transactions and upload any deposits/withdrawls with a
         few easy clicks!
       </p>
+      {% if g.user %}
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a
+          class="btn btn-dark btn-lg px-4 gap-3"
+          href="{{ url_for('bank.balance') }}"
+        >
+          Balance
+        </a>
+        <a
+          class="btn btn-outline-dark btn-lg px-4"
+          href="{{ url_for('bank.transactions') }}"
+        >
+          Transactions
+        </a>
+        {% else %}
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
         <a
           class="btn btn-dark btn-lg px-4 gap-3"
@@ -29,6 +44,7 @@
           Log in
         </a>
       </div>
+      {% endif %}
     </div>
   </div>
 </section>

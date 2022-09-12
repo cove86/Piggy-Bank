@@ -1,5 +1,3 @@
-import imp
-from webbrowser import get
 from pbank.db import get_db
 from datetime import datetime
 

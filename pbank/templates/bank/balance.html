@@ -1,206 +1,208 @@
 {% extends 'base.html' %} {%block header %}
 <h1>{% block title %}Balance{%endblock %} {% endblock %}</h1>
 {% block content %}
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">£50</th>
-      <th scope="col">£20</th>
-      <th scope="col">£10</th>
-      <th scope="col">£5</th>
-      <th scope="col">£2</th>
-      <th scope="col">£1</th>
-      <th scope="col">50p</th>
-      <th scope="col">20p</th>
-      <th scope="col">10p</th>
-      <th scope="col">5p</th>
-      <th scope="col">2p</th>
-      <th scope="col">1p</th>
-      <th scope="col">Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      {% for val in balance %}
-      <td>{{ val }}</td>
-      {% endfor %}
-      <td>£{{ balance_total }}</td>
-    </tr>
-  </tbody>
-</table>
-<div class="mb-3 d-flex justify-content-evenly">
-  <!-- <a class="btn btn-primary">Deposit</a>
+<section class="container">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">£50</th>
+        <th scope="col">£20</th>
+        <th scope="col">£10</th>
+        <th scope="col">£5</th>
+        <th scope="col">£2</th>
+        <th scope="col">£1</th>
+        <th scope="col">50p</th>
+        <th scope="col">20p</th>
+        <th scope="col">10p</th>
+        <th scope="col">5p</th>
+        <th scope="col">2p</th>
+        <th scope="col">1p</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {% for val in balance %}
+        <td>{{ val }}</td>
+        {% endfor %}
+        <td>£{{ balance_total }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="mb-3 d-flex justify-content-evenly">
+    <!-- <a class="btn btn-primary">Deposit</a>
   <a class="btn btn-primary">Withdraw</a> -->
-  <!-- Button trigger modal -->
-  <button
-    type="button"
-    class="btn btn-primary"
-    data-bs-toggle="modal"
-    data-bs-target="#depositModal"
-  >
-    Deposit
-  </button>
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-dark"
+      data-bs-toggle="modal"
+      data-bs-target="#depositModal"
+    >
+      Deposit
+    </button>
 
-  <!-- Modal -->
-  <div
-    class="modal fade"
-    id="depositModal"
-    tabindex="-1"
-    aria-labelledby="depositModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="depositModalLabel">Deposit</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <form method="post">
-            <div class="row row-cols-3">
-              <div class="mb-3">
-                <label for="Fifty" class="form-label">£50</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  name="Fifty"
-                  value="0"
-                />
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="depositModal"
+      tabindex="-1"
+      aria-labelledby="depositModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="depositModalLabel">Deposit</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form method="post">
+              <div class="row row-cols-3">
+                <div class="mb-3">
+                  <label for="Fifty" class="form-label">£50</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="Fifty"
+                    value="0"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="Twenty" class="form-label">£20</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="Twenty"
+                    value="0"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="Ten" class="form-label">£10</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="Ten"
+                    value="0"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="Five" class="form-label">£5</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="Five"
+                    value="0"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="Two" class="form-label">£2</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="Two"
+                    value="0"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="One" class="form-label">£1</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="One"
+                    value="0"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="Fifty_Pence" class="form-label">50p</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="Fifty_Pence"
+                    value="0"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="Twenty_Pence" class="form-label">20p</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="Twenty_Pence"
+                    value="0"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="Ten_Pence" class="form-label">10p</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="Ten_Pence"
+                    value="0"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="Five_Pence" class="form-label">5p</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="Five_Pence"
+                    value="0"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="Two_Pence" class="form-label">2p</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="Two_Pence"
+                    value="0"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="One_Pence" class="form-label">1p</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="One_Pence"
+                    value="0"
+                  />
+                </div>
               </div>
-              <div class="mb-3">
-                <label for="Twenty" class="form-label">£20</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  name="Twenty"
-                  value="0"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="Ten" class="form-label">£10</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  name="Ten"
-                  value="0"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="Five" class="form-label">£5</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  name="Five"
-                  value="0"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="Two" class="form-label">£2</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  name="Two"
-                  value="0"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="One" class="form-label">£1</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  name="One"
-                  value="0"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="Fifty_Pence" class="form-label">50p</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  name="Fifty_Pence"
-                  value="0"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="Twenty_Pence" class="form-label">20p</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  name="Twenty_Pence"
-                  value="0"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="Ten_Pence" class="form-label">10p</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  name="Ten_Pence"
-                  value="0"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="Five_Pence" class="form-label">5p</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  name="Five_Pence"
-                  value="0"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="Two_Pence" class="form-label">2p</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  name="Two_Pence"
-                  value="0"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="One_Pence" class="form-label">1p</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  name="One_Pence"
-                  value="0"
-                />
-              </div>
-            </div>
-            <div class="modal-footer justify-content-evenly">
-              <!-- <button
+              <div class="modal-footer justify-content-evenly">
+                <!-- <button
                 type="button"
                 class="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Close
               </button> -->
-              <button
-                name="form-button"
-                value="deposit"
-                type="submit"
-                class="btn btn-primary"
-              >
-                Deposit
-              </button>
-              <button
-                name="form-button"
-                value="withdraw"
-                type="submit"
-                class="btn btn-primary"
-              >
-                Withdraw
-              </button>
-            </div>
-          </form>
+                <button
+                  name="form-button"
+                  value="deposit"
+                  type="submit"
+                  class="btn btn-dark"
+                >
+                  Deposit
+                </button>
+                <button
+                  name="form-button"
+                  value="withdraw"
+                  type="submit"
+                  class="btn btn-dark"
+                >
+                  Withdraw
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 {% endblock %}
