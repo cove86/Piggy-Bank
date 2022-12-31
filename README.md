@@ -10,7 +10,7 @@ __initi __.py is where the app initialises from, this is the app factory and is 
 
 auth.py contains all of the logic for registering and logging in a user, it also contains a login_required wrapper function used to ensure only a logged in user has access to as certain page.
 
-bank.py contains most of the logic of the app, balance and transactions.
+bank.py contains all of the routes around the bank side of the app, there is a balance route that cotains the logic for the balance page on the website aswell as the deposit and withdraw button and functionality. The deposit, withdraw, enough_to_withdraw, tran_history, total functions are imported from helpers.py in order to build the logic for thius page.
 
 db.py contains the initialisation of the database.
 
@@ -18,4 +18,6 @@ helpers.py contains some helper functions used by bank.py, logic around deposit,
 
 static contains a logo and styles.css file
 
-templates contains allof the html used in the project, there is a base.html which is the template for all of the pages, jinja is used in some files to add logic to the pages themselves
+templates contains all of the html used in the project, split into auth and bank folders, there is a base.html which is the template for all of the pages in the root of the templates folder. 
+
+jinja is used to add logic in all of the html pages, in balance.htmlo it is used to add in each value from the database for each value and then to add the total amount at the end, in index.html it is used to only display certain links if the user is logged in and in transactions.html it is used to pull and display the transaction history from the database.
